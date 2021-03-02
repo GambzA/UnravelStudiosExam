@@ -1,7 +1,7 @@
 <?php
     //ECOM INFO
     define('BRAND_NAME', 'TEST ECOMMERCE');
-    define('URL_LINK'  , 'http://ecom-singapore.local/');
+    define('URL_LINK'  , 'http://ecom-singapore.local/ecom/');
 
     //DB CONNECTION
     define('DB_HOST','localhost');
