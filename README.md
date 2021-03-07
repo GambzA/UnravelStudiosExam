@@ -27,3 +27,4 @@ Backend Access:
 U: admin
 P: adminPass2021
 
+Please modify URL_LINK in congif.php in / and /ecom
