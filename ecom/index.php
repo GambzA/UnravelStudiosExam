@@ -24,6 +24,16 @@ $mode   = $_GET['val1'] ?? false;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script src="<?= URL_LINK; ?>js/jquery.ui.widget.js"></script>
+    <script src="<?= URL_LINK; ?>js/jquery.fileupload.js"></script>
+    <script src="<?= URL_LINK; ?>js/jquery.iframe-transport.js"></script>
+    <script src="<?= URL_LINK; ?>js/jquery.fancy-fileupload.js"></script>
+
+
+    <link href="<?= URL_LINK; ?>css/fancy_fileupload.css" rel="stylesheet">
+
     <link href="<?= URL_LINK; ?>css/simple-sidebar.css" rel="stylesheet">
 
 </head>

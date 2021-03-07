@@ -1,0 +1,188 @@
+@font-face {
+    font-family: mulish-regular;
+    src: url(../fonts/Mulish-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: rondal-regular;
+    src: url(../fonts/RondalRegular-K7ORW.otf);
+}
+
+* {
+    font-family: mulish-regular;
+}
+
+.sign-in-sign-up {
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.banner-caption {
+    font-family: rondal-regular;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
+    color: black;
+    font-size: 12vw;
+}
+
+.navbar-brand {
+    font-family: rondal-regular;
+    color: black;
+    font-size: 30px;
+}
+
+.best-sellers {
+    font-family: rondal-regular;
+    color: black;
+    text-decoration: underline;
+}
+
+.nav-item {
+    color: black;
+}
+
+.nav-item:hover {
+    color: black;
+}
+
+.product-item {
+    color: black;
+}
+
+.product-item:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.product-title {
+    font-family: rondal-regular;
+}
+
+
+/* COLOR SELECTOR STYLING */
+
+.color-option {
+    display: none;
+}
+
+.color-option-display {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.color-option-display span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background: #eeeeee;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    transition: ease .3s;
+}
+
+.black .color-option-display span {
+    background: #000000;
+}
+
+.white .color-option-display span {
+    background: #f4f9f9;
+}
+
+.layer {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    /*transition: ease .3s;*/
+    z-index: -1;
+}
+
+.black input:checked~.color-option-display span {
+    border: 1px solid white;
+}
+
+.white input:checked~.color-option-display span {
+    border: 1px solid black;
+}
+
+
+/* QTY INPUT CUSTOM STYLING */
+
+.btn-plus,
+.btn-minus {
+    border: 1px solid #ced4da;
+}
+
+
+/* PRODUCT DETAILS STYLINGS */
+
+.details-and-care {
+    color: black;
+    text-decoration: none;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+}
+
+.details-and-care:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.details-and-care a {
+    text-decoration: none;
+    color: black
+}
+
+.details-and-care a:hover {
+    text-decoration: none;
+    color: black
+}
+
+.custom-button {
+    padding: 7px;
+    background-color: black;
+    color: white;
+    border: none;
+    text-decoration: none;
+}
+
+.custom-button:hover {
+    color: white;
+    border: none;
+    text-decoration: none;
+}
+
+.product-description {
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+
+/* CART PAGE STYLING */
+
+.cart-header {
+    font-family: rondal-regular;
+}
+
+.cart-thead {
+    font-family: rondal-regular !important;
+}
+
+.logout-sure {
+    font-family: rondal-regular !important;
+}

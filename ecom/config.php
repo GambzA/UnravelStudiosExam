@@ -2,6 +2,7 @@
     //ECOM INFO
     define('BRAND_NAME', 'TEST ECOMMERCE');
     define('URL_LINK'  , 'http://ecom-singapore.local/ecom/');
+    define('FE_LINK'  , 'http://ecom-singapore.local/');
 
     //DB CONNECTION
     define('DB_HOST','localhost');

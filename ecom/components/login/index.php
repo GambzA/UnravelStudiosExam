@@ -11,7 +11,7 @@
                 $password_md5 = $user['userPass'];
                 // compare pw
                 if (md5($_POST['password']) == $password_md5):
-                    $_SESSION["logged_in"] = 1;
+                    $_SESSION["LUXURIABE"] = 1;
                     $login_success = 1;
                     header("Location: ".URL_LINK);
                 endif;
