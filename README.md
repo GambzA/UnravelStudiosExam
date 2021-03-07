@@ -27,4 +27,4 @@ Backend Access:
 U: admin
 P: adminPass2021
 
-Please modify URL_LINK in config.php in root and /ecom directory
+Please modify URL_LINK definition in config.php in root and /ecom directory
