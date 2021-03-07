@@ -9,28 +9,30 @@
         $data_update['itemPrice'] = $_POST['itemPrice'];
         $data_update['itemStock'] = $_POST['itemStock'];
         $data_update['itemDescription'] = $_POST['itemDescription'];
-        $data_update['itemImage'] = $_FILES['image_field']['name'];
         $data_update['enabled'] = $_POST['enabled'];
         
+        
+        if ($_FILES['image_field']['size'] != 0 && $_FILES['image_field']['name'] != ""):  
+            $data_update['itemImage'] = $_FILES['image_field']['name'];
+            $picture_filename = pathinfo($_FILES['image_field']['name'], PATHINFO_FILENAME);
+            $handle = new Upload($_FILES['image_field']);
+            if ($handle->uploaded) {
+                $handle->file_new_name_body   = $picture_filename;
+                $handle->image_resize         = false;
+                $handle->image_x              = 439;
+                $handle->image_ratio_y        = true;
+                $handle->process('../img/clothes/');
+                if ($handle->processed) {
+                $handle->clean();
+                } else {
+                    echo 'error : ' . $handle->error;
+                    exit;
+                }
+            }
+        endif;
+
         $data_update['date_updated']   = date('Y-m-d H:i:s');
         $update = $db->update('ecom_product', $data_update, "itemID=%s", $id);
-
-        $picture_filename = pathinfo($_FILES['image_field']['name'], PATHINFO_FILENAME);
-        $handle = new Upload($_FILES['image_field']);
-        if ($handle->uploaded) {
-            $handle->file_new_name_body   = $picture_filename;
-            $handle->image_resize         = false;
-            $handle->image_x              = 439;
-            $handle->image_ratio_y        = true;
-            $handle->process('../img/clothes/');
-            if ($handle->processed) {
-              $handle->clean();
-            } else {
-                echo 'error : ' . $handle->error;
-                exit;
-              }
-        }
-
         header("Location: ".URL_LINK."$page/$mode/$id/success");
     endif;
 

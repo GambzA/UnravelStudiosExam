@@ -12,8 +12,6 @@
                 <thead>
                     <tr>
                         <th class="text-center">Items</th>
-                        <th class="text-center">Size</th>
-                        <th class="text-center">Color</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Qty</th>
                         <th class="text-center">Total</th>
@@ -21,48 +19,46 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $total_items = count($_SESSION['LUXURIAFE']['cart'] ?? array());
+                        $grandTotal = 0;
+                        if($total_items > 0):
+                            // COLLECT ALL PRODUCTS FIRST
+                            $products = array();
+                            $products = array_keys($_SESSION['LUXURIAFE']['cart']);
+
+                            // GET PRODUCT DETAILS
+                            $productDetails = $db->query("SELECT * FROM ecom_product WHERE itemID IN (".implode(',',$products).") ");
+
+                        foreach($productDetails as $cartItems):
+                    ?>
+                    <input type="hidden" id="product" value="<?= $cartItems['itemID']; ?>">
                     <tr>
                         <td>
                             <div class="row">
                                 <div class="col-sm-3"><img src="<?= IMG; ?>clothes/clothes1.webp" style="width: 100px;"></div>
                                 <div class="col-sm-9">
-                                    <h5 class="product-title">Cardigan Dress</h5>
+                                    <h5 class="product-title"><?= $cartItems['itemName']; ?></h5>
                                 </div>
                             </div>
-
                         </td>
-                        <td class="text-center">S</td>
-                        <td class="text-center">White</td>
-                        <td class="text-center">P 1500</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">P 1500</td>
-                        <td class="text-center">Remove</td>
+                        <td class="text-center">SGD <?= $cartItems['itemPrice']; ?></td>
+                        <td class="text-center"><?= $_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty']; ?></td>
+                        <td class="text-center">SGD <?= number_format($_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty'] * $cartItems['itemPrice'],2); ?></td>
+                        <td class="text-center"><button class="btn-clear remove-product" type="button"><i class="fa fa-minus-circle" aria-hidden="true"></i></button></td>
                     </tr>
+                    <?php 
+                        $grandTotal += $_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty'] * $cartItems['itemPrice'];
+                        endforeach;
+                        endif; 
+                    ?>
                     <tr>
-                        <td>
-                            <div class="row">
-                                <div class="col-sm-3"><img src="<?= IMG; ?>clothes/clothes1.webp" style="width: 100px;"></div>
-                                <div class="col-sm-9">
-                                    <h5 class="product-title">Cardigan Dress</h5>
-                                </div>
-                            </div>
-
-                        </td>
-                        <td class="text-center">S</td>
-                        <td class="text-center">White</td>
-                        <td class="text-center">P 1500</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">P 1500</td>
-                        <td class="text-center">Remove</td>
-                    </tr>
-                    <tr>
+                        <input type="hidden" id="grand_total" value="<?= $grandTotal; ?>">
                         <td></td>
                         <td class="text-center"></td>
+                        <td class="text-center">GRAND TOTAL:</td>
+                        <td class="text-center">SGD <span id="totalPrice"><?= number_format($grandTotal,2); ?></span></td>
                         <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center">Grand Total</td>
-                        <td class="text-center">P 1500</td>
                     </tr>
                 </tbody>
             </table>

@@ -186,3 +186,9 @@
 .logout-sure {
     font-family: rondal-regular !important;
 }
+
+.btn-clear {
+    padding: 0;
+    background: none;
+    border: none;
+}

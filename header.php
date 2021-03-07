@@ -1,3 +1,6 @@
+<?php
+    $total_items = count($_SESSION['LUXURIAFE']['cart'] ?? array());
+?>
 <div class="fixed-top">
     <div class="container-fluid bg-dark">
         <div class="row">
@@ -22,7 +25,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ml-auto">
                 <a href="<?= URL_LINK; ?>" class="nav-item nav-link active">Home</a>
-                <a href="<?= URL_LINK; ?>cart" class="nav-item nav-link"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp; 4</a>
+                <a href="<?= URL_LINK; ?>cart" class="nav-item nav-link shopping-bag" data-toggle="tooltip" data-placement="bottom" data-html="true" data-trigger="manual" title="">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp; <span class="bag-count"><?= $total_items; ?></span></a>
             </div>
         </div>
     </nav>
