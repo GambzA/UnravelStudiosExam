@@ -40,7 +40,7 @@ $mode   = $_GET['val1'] ?? false;
 
 <body>
     <div class="d-flex" id="wrapper">
-        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) : ?>
+        <?php if (isset($_SESSION["LUXURIABE"]["logged_in"]) && $_SESSION["LUXURIABE"]["logged_in"] == 1) : ?>
 
 
             <!-- Sidebar -->

@@ -192,3 +192,7 @@
     background: none;
     border: none;
 }
+
+.item-warning {
+    color: red;
+}

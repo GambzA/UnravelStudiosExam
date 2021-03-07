@@ -10,8 +10,9 @@
                 <span class="text-white sign-in-sign-up"> - </span>
                 <a href="<?= URL_LINK; ?>signup" class="text-white sign-in-sign-up">CREATE ACCOUNT</a>
                 <?php endif; ?>
-
                 <?php if(isset($_SESSION["LUXURIAFE"]["logged_in"]) == 1): ?>
+                <a href="<?= URL_LINK; ?>myorders" class="text-white sign-in-sign-up">MY ORDERS</a>
+                <span class="text-white sign-in-sign-up"> - </span>
                 <a href="<?= URL_LINK; ?>logout" class="text-white sign-in-sign-up">LOGOUT</a>
                 <?php endif; ?>
             </div>

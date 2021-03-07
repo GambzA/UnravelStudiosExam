@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+<div class="my-5 py-5"></div>
 <?php 
     else:
         header("Location: ".URL_LINK);

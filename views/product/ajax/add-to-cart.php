@@ -18,7 +18,7 @@
         $name  = $remainingStock['itemName'];
 
         if($stock > 0):
-            if($stock > $_POST['qty']):
+            if($stock >= $_POST['qty']):
                 $_SESSION['LUXURIAFE']['cart'][$_POST['product']]['product'] = $_POST['product'];
                 $_SESSION['LUXURIAFE']['cart'][$_POST['product']]['qty']     = $_POST['qty'];
 

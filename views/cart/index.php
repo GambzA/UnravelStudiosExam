@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -32,18 +32,23 @@
 
                         foreach($productDetails as $cartItems):
                     ?>
-                    <input type="hidden" id="product" value="<?= $cartItems['itemID']; ?>">
+                    <input type="hidden" id="product" class="product" value="<?= $cartItems['itemID']; ?>">
                     <tr>
                         <td>
                             <div class="row">
-                                <div class="col-sm-3"><img src="<?= IMG; ?>clothes/clothes1.webp" style="width: 100px;"></div>
+                                <div class="col-sm-3"><img src="<?= IMG; ?>clothes/clothes1.webp" class="img-fluid"></div>
                                 <div class="col-sm-9">
                                     <h5 class="product-title"><?= $cartItems['itemName']; ?></h5>
                                 </div>
                             </div>
                         </td>
                         <td class="text-center">SGD <?= $cartItems['itemPrice']; ?></td>
-                        <td class="text-center"><?= $_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty']; ?></td>
+                        <td class="text-center">
+                            <span data-toggle="tooltip" data-placement="bottom" data-html="true" data-trigger="manual" title="" class="item-qty">
+                                <?= $_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty']; ?>
+                            </span>&nbsp;
+                            <span class="item-warning d-none"><b>!</b></span>
+                        </td>
                         <td class="text-center">SGD <?= number_format($_SESSION['LUXURIAFE']['cart'][$cartItems['itemID']]['qty'] * $cartItems['itemPrice'],2); ?></td>
                         <td class="text-center"><button class="btn-clear remove-product" type="button"><i class="fa fa-minus-circle" aria-hidden="true"></i></button></td>
                     </tr>
@@ -64,7 +69,7 @@
             </table>
         </div>
         <div class="col-md-3">
-            <a class="w-100 custom-button" role="button" href="<?= URL_LINK; ?>checkout">PROCEED TO CHECKOUT</a>
+            <button class="w-100 custom-button proceed-checkout" type="button" href="<?= URL_LINK; ?>checkout">PROCEED TO CHECKOUT</button>
         </div>
     </div>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2021 at 05:52 AM
+-- Generation Time: Mar 07, 2021 at 11:18 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -33,15 +33,17 @@ CREATE TABLE `ecom_customer` (
   `customerLastName` varchar(50) NOT NULL,
   `customerEmail` varchar(50) NOT NULL,
   `customerContact` varchar(50) NOT NULL,
-  `customerAddress` text NOT NULL
+  `customerAddress` text NOT NULL,
+  `customerPassword` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ecom_customer`
 --
 
-INSERT INTO `ecom_customer` (`customerID`, `customerFirstName`, `customerLastName`, `customerEmail`, `customerContact`, `customerAddress`) VALUES
-(1, 'Roi Mark', 'Gamba', 'gambaroimark@gmail.com', '09667440536', 'B29 L46 PH6 SOMEWHERE STREET, NEAR CITY, PHILIPPINES');
+INSERT INTO `ecom_customer` (`customerID`, `customerFirstName`, `customerLastName`, `customerEmail`, `customerContact`, `customerAddress`, `customerPassword`) VALUES
+(1, 'Roi Mark', 'Gamba', 'gambaroimark@gmail.com', '09667440536', 'B29 L46 PH6 SOMEWHERE STREET, NEAR CITY, PHILIPPINES', 'bfd59291e825b5f2bbf1eb76569f8fe7'),
+(14, 'Roi', 'Gamba', 'test@gmail.com', '09667440536', 'Block 29 Lot 46 Ph6, Carmona E', 'bfd59291e825b5f2bbf1eb76569f8fe7');
 
 -- --------------------------------------------------------
 
@@ -57,19 +59,18 @@ CREATE TABLE `ecom_product` (
   `enabled` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime DEFAULT NULL,
-  `date_updated` datetime DEFAULT NULL
+  `date_updated` datetime DEFAULT NULL,
+  `itemDescription` text NOT NULL,
+  `itemImage` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ecom_product`
 --
 
-INSERT INTO `ecom_product` (`itemID`, `itemName`, `itemPrice`, `itemStock`, `enabled`, `deleted`, `date_created`, `date_updated`) VALUES
-(1, 'Specialized Mug', '125.00', 10, 0, 1, NULL, NULL),
-(2, 'Christmas Tumblers', '110.00', 5, 1, 0, NULL, '2021-03-01 04:41:21'),
-(3, 'Frosted Glass', '200.00', 200, 1, 0, '2021-03-01 04:39:16', '2021-03-01 04:39:16'),
-(4, 'TEST', '100.00', 10, 0, 1, '2021-03-01 04:40:41', '2021-03-01 04:40:41'),
-(5, 'TEST', '100.00', 10, 0, 1, '2021-03-01 04:40:56', '2021-03-01 04:40:56');
+INSERT INTO `ecom_product` (`itemID`, `itemName`, `itemPrice`, `itemStock`, `enabled`, `deleted`, `date_created`, `date_updated`, `itemDescription`, `itemImage`) VALUES
+(7, 'Cardigan Dress', '1500.00', 5, 1, 0, '2021-03-06 16:51:24', '2021-03-07 10:47:14', '', 'ezgif.com-gif-maker.jpg'),
+(8, 'Dress', '1200.00', 1, 1, 0, '2021-03-07 04:36:14', '2021-03-07 10:47:20', '<p>Exotica meets artisanal in the Spring 2021 collection. A harmony of exotic and artisanal influences for a polished, relaxed, and comfortable look.</p>\r\n<p>36\" long from center back neck</p>\r\n<p>Wrinkle resistant</p>\r\n<p>Relaxed fit</p>\r\n<p>*Exclusive to natori.com</p>\r\n<ul>\r\n<li>100% polyester</li>\r\n<li>Machine wash cold, with similar colors, gentle cycle, do not bleach, tumble dry low remove promptly, cool iron</li>\r\n<li>Made at our own factories in the Philippines</li>\r\n</ul>', 'ezgif.com-gif-maker.jpg');
 
 -- --------------------------------------------------------
 
@@ -79,17 +80,19 @@ INSERT INTO `ecom_product` (`itemID`, `itemName`, `itemPrice`, `itemStock`, `ena
 
 CREATE TABLE `ecom_transaction` (
   `transactionID` smallint(3) NOT NULL,
-  `transactionNumber` varchar(5) NOT NULL,
+  `transactionNumber` varchar(30) NOT NULL,
   `transactionDate` datetime NOT NULL,
-  `customerID` smallint(3) NOT NULL
+  `customerID` smallint(3) NOT NULL,
+  `grossTotal` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ecom_transaction`
 --
 
-INSERT INTO `ecom_transaction` (`transactionID`, `transactionNumber`, `transactionDate`, `customerID`) VALUES
-(1, 'X123A', '2021-03-01 11:56:59', 1);
+INSERT INTO `ecom_transaction` (`transactionID`, `transactionNumber`, `transactionDate`, `customerID`, `grossTotal`) VALUES
+(8, '20210307104733', '2021-03-07 10:47:33', 1, '2400.00'),
+(9, '20210307105318', '2021-03-07 10:53:18', 1, '0.00');
 
 -- --------------------------------------------------------
 
@@ -101,15 +104,17 @@ CREATE TABLE `ecom_transaction_item` (
   `transactionItemID` mediumint(3) NOT NULL,
   `productID` smallint(3) NOT NULL,
   `transactionID` mediumint(3) NOT NULL,
-  `transactionQty` smallint(3) NOT NULL
+  `transactionQty` smallint(3) NOT NULL,
+  `totalAmount` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ecom_transaction_item`
 --
 
-INSERT INTO `ecom_transaction_item` (`transactionItemID`, `productID`, `transactionID`, `transactionQty`) VALUES
-(1, 2, 1, 2);
+INSERT INTO `ecom_transaction_item` (`transactionItemID`, `productID`, `transactionID`, `transactionQty`, `totalAmount`) VALUES
+(13, 8, 8, 2, '2400.00'),
+(14, 8, 9, 2, '2400.00');
 
 -- --------------------------------------------------------
 
@@ -173,25 +178,25 @@ ALTER TABLE `ecom_user`
 -- AUTO_INCREMENT for table `ecom_customer`
 --
 ALTER TABLE `ecom_customer`
-  MODIFY `customerID` smallint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customerID` smallint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `ecom_product`
 --
 ALTER TABLE `ecom_product`
-  MODIFY `itemID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `itemID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ecom_transaction`
 --
 ALTER TABLE `ecom_transaction`
-  MODIFY `transactionID` smallint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `transactionID` smallint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ecom_transaction_item`
 --
 ALTER TABLE `ecom_transaction_item`
-  MODIFY `transactionItemID` mediumint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `transactionItemID` mediumint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `ecom_user`
