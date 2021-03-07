@@ -40,7 +40,7 @@
 
             </div>
             <div class="order-details mt-5">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <label for="">Color:</label>
                         <div class="color-selector">
@@ -56,7 +56,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row mt-2">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <!-- <div class="col-md-8">
                         <label for="">Size:</label>
                         <label for=""></label>
                         <select class="form-control" name="" id="">
@@ -74,7 +74,7 @@
                             <option>Medium</option>
                             <option>Large</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-12">
